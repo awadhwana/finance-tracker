@@ -10,4 +10,3 @@ class StocksController < ApplicationController
     render 'users/search'
   end
 end
-  
