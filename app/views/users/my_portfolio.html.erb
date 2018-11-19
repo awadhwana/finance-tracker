@@ -1,0 +1,14 @@
+<h3>Search for Stocks</h3>
+<div id="stock-lookup">
+  <%= form_with url: search_stock_url, local: true,method: :get, id: :stock_lookup_form do |form| %>
+    <div class="form-group row no-padding text-center col-md-12">
+      <div class="col-md-10">
+        <%= form.text_field :stock, placeholder: "Stock ticker symbol", autofocus: true,
+                            class: "form-control search-box input-lg" %>
+      </div>
+      <div class="col-md-2">
+        <%= form.submit 'Look up a stock',class: "btn btn-lg btn-success"%>
+      </div>
+    </div>
+  <% end %>
+</div>
