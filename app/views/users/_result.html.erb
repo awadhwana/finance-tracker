@@ -8,8 +8,18 @@
     <strong>Symbol: </strong> <%= @stock.ticker %>
     <strong>Name: </strong> <%= @stock.name %>
     <strong>Price: </strong> <%= @stock.last_price %>
-    <%= link_to 'add to my stock',
-        user_stocks_path(ticker: @stock.ticker, user: current_user),
-        class: "btn btn-xs btn-success", method: :post%>
+    <% if current_user.can_add_stock?(@stock.ticker) %>
+      <%= link_to 'add to my stock',
+                  user_stocks_path(ticker: @stock.ticker, user: current_user),
+                  class: "btn btn-xs btn-success", method: :post%>
+    <% else %>
+      <span class="label label-default">
+        <% if !current_user.under_stock_limit? %>
+          Tracking 10 stocks already
+       <%elsif current_user.stock_already_added?(@stock.ticker) %>
+         Already tracking this stock
+       <% end %>
+      </span>
+    <% end %>
   </div>
 <% end %>
