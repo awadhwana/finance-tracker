@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_19_112716) do
+ActiveRecord::Schema.define(version: 2018_11_20_112810) do
 
   create_table "stocks", force: :cascade do |t|
     t.string "ticker"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2018_11_19_112716) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["stock_id"], name: "index_user_stocks_on_stock_id"
+    t.index ["user_id", "stock_id"], name: "index_user_stocks_on_user_id_and_stock_id", unique: true
     t.index ["user_id"], name: "index_user_stocks_on_user_id"
   end
 
