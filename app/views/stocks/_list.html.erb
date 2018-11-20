@@ -17,7 +17,7 @@
           <td><%= a.ticker%></td>
           <td><%= a.last_price%></td>
           <% if current_user.id == @user.id %>
-          <td> <%= link_to 'Delete this stock', user_stock_url(a.id), method: :delete,
+          <td> <%= link_to 'Delete this stock', user_stock_url(a), method: :delete,
                  data: {confirm: 'Are you sure ?'}, class: "btn btn-danger btn-xs" %> 
           <% end %>
           </td>
