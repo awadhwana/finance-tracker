@@ -1,48 +1,28 @@
 <div class="table-responsive"> 
   <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Symbol</th>
-          <th>Current price</th>
-          <% if current_user.id == @user.id %>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Symbol</th>
+        <th>Current price</th>
+        <% if current_user.id == @user.id %>
           <th>Action</th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% @ustocks.each do |a|%>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @ustocks.each do |a|%>
         <tr>
           <td><%= a.name%></td>
           <td><%= a.ticker%></td>
           <td><%= a.last_price%></td>
           <% if current_user.id == @user.id %>
           <td> <%= link_to 'Delete this stock', user_stock_url(a), method: :delete,
-                 data: {confirm: 'Are you sure ?'}, class: "btn btn-danger btn-xs" %> 
+                  data: {confirm: 'Are you sure ?'}, class: "btn btn-danger btn-xs" %> 
           <% end %>
           </td>
-          
         </tr>
-        <% end %>
-      </tbody>
-    </table>
- </div>
-
-  <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>table id</th>
-          <th>u id</th>
-          <th>s id</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @user.user_stocks.each do |a|%>
-        <tr>
-          <td><%= a.id%></td>
-          <td><%= a.user_id%></td>
-          <td><%= a.stock_id%></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+      <% end %>
+    </tbody>
+  </table>
+</div>
