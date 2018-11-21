@@ -1,0 +1,24 @@
+<div class="table-responsive"> 
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @friendships.each do |a|%>
+        <tr>
+          <td><%= a.first_name.capitalize %></td>
+          <td><%= a.email %></td>
+          <td><%= link_to "View Profile", user_url(a),
+                  class: "btn btn-primary btn-xs" %>
+              <%= link_to "Remove Friend", friendship_url(a), method: :delete,
+                  data: { confirm: "Are you sure?" }, class: "btn btn-xs btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
