@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'friends', to: 'users#friends'
   get 'user_stocks/create'
   devise_for :users
   root 'welcome#index'
