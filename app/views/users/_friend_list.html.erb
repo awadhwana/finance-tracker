@@ -8,9 +8,9 @@
       </tr>
     </thead>
     <tbody>
-      <% @friendships.each do |a|%>
+      <% @friends.each do |a|%>
         <tr>
-          <td><%= a.first_name.capitalize %></td>
+          <td><%= a.full_name.capitalize %></td>
           <td><%= a.email %></td>
           <td><%= link_to "View Profile", user_url(a),
                   class: "btn btn-primary btn-xs" %>

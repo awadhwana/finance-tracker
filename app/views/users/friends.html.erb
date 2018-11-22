@@ -1,5 +1,6 @@
 <h1>My Friends</h1>
-<% if @friendships.count > 0 %>
+<%= render 'friend_search' %>
+<% if @friends.count > 0 %>
   <%= render 'friend_list' %>
 
 <% else %>
