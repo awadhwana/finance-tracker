@@ -6,16 +6,15 @@
 <% if @result.present? %>
 <div class="well results-block">
   <% @result.each do |item| %>
-    <strong>Email: </strong> <%= item.email %>
-    
-    <%# <% if current_user.friends.find.map(&:id) %> %>
-        <%= link_to 'add to friends',
-                    '#',
-                    class: "btn btn-xs btn-success", method: :post, remote: true%>
-    <%# <% else %> %>
+    <strong>Email: </strong> <%= item.email %> <%= item.id%>
+    <% if @my_friends.include?(item.id)%>
       <span class="label label-default">
           Already added
-    <%# <% end %> %>
+    <% else %>
+    <%= link_to 'add to friends',
+                    '#',
+                    class: "btn btn-xs btn-success", method: :post, remote: true%>
+    <% end %>
         </span>
   <% end %>
 </div>

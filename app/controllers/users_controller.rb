@@ -17,15 +17,9 @@ class UsersController < ApplicationController
   def searchu
     @result = User.where(['email LIKE ? or last_name LIKE ? or first_name LIKE ?',
                           "%#{params[:user]}%", "%#{params[:user]}%",
-                          "%#{params[:user]}%"]).uniq
-    @result = @result.take(10)
-    if @result.blank?
-      flash.now[:danger] = 'no match found'
-    end
+                          "%#{params[:user]}%"]).where.not(id: current_user.id).uniq
+
+    @my_friends = current_user.friends.pluck(:id)
+    flash.now[:danger] = 'no match found' if @result.blank?
   end
 end
-# Post.where(a).where(b).or(Post.where(c))
-# || "last_name LIKE ?", "%#{params[:user]}%" || "first_name LIKE ?", "%#{params[:user]}%"
-#User.find_by_sql(["select * from users where email = 'deepak' OR first_name='deepak' OR  last_name='deepak'"])
-# select * from users where email = 'deepak' OR first_name='deepak' OR last_name='deepak'
-# @result = User.where(["email LIKE ? or last_name LIKE ?", "%#{params[:user]}%", "%#{params[:user]}%"])
