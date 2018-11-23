@@ -15,11 +15,17 @@ class UsersController < ApplicationController
   end
 
   def searchu
-    @result = User.where(['email LIKE ? or last_name LIKE ? or first_name LIKE ?',
+    if params[:user].blank?
+      flash.now[:danger] = 'You entered empty search string'
+    else
+      @my_friends = current_user.friends.pluck(:id)
+      @result = User.where(['email LIKE ? or last_name LIKE ? or first_name LIKE ?',
                           "%#{params[:user]}%", "%#{params[:user]}%",
                           "%#{params[:user]}%"]).where.not(id: current_user.id).uniq
-
-    @my_friends = current_user.friends.pluck(:id)
-    flash.now[:danger] = 'no match found' if @result.blank?
+      flash.now[:danger] = 'No match found' if @result.empty?
+    end
+  end
+  respond_to do |format|
+    format.js { render partial: 'user/user_results' }
   end
 end

@@ -3,19 +3,29 @@
     <%= bootstrap_flash %>
   </div>
 <% end %>
+
 <% if @result.present? %>
 <div class="well results-block">
-  <% @result.each do |item| %>
-    <strong>Email: </strong> <%= item.email %> <%= item.id%>
-    <% if @my_friends.include?(item.id)%>
-      <span class="label label-default">
-          Already added
-    <% else %>
-    <%= link_to 'add to friends',
-                    '#',
-                    class: "btn btn-xs btn-success", method: :post, remote: true%>
-    <% end %>
-        </span>
-  <% end %>
-</div>
+  <table class="search-results-table col-md-12">
+    <tbody>
+      <% @result.each do |item| %>
+          <tr>
+            <td><strong>Name:</strong> <%= item.  full_name %></td>
+            <td style="padding: 5px;"><strong>Email:</strong> <%= item.email %></td>
+            <td><strong>Profile:</strong> <%= link_to "View Profile", user_url(item),
+                                          class: "btn btn-xs btn-primary" ,style: "margin: 5px;"%>
+              <% if @my_friends.include?(item.id)%>
+                <span class="label label-default">
+                    Already added
+              <% else %>
+                <%= link_to 'Add to friends',add_url(friend:item),
+                    class: "btn btn-xs btn-success", method: :post%>
+              <% end %>
+                </span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <% end %>

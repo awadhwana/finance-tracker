@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post 'add', to: 'friendships#add'
   get 'friends', to: 'users#friends'
   get 'search_users', to: 'users#searchu'
   get 'user_stocks/create'
